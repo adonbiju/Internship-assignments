@@ -1,25 +1,89 @@
+  
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-
-  </head>
-  <body>
-    <!-- <div ng-app="">
-      <p>Name: <input type="text" ng-model="name" id=""></p>
-      <h1>{{name}}</h1>
-    </div> -->
-   
-   
-    <!-- <div ng-app="">
-      <p>My first expression: {{ 5 + 5 }}</p>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <!-- AngularJS Directives -->
+    <div ng-app="">
+        <p>Name: <input type="text" ng-model="name"></p>
+        <p ng-bind="name"></p>
     </div>
-     -->
-    
-    <div ng-app="" ng-init="myCol='lightblue'">
 
+    
+    <div ng-app="" ng-init="firstName='Test'">
+        <p>The name is <span ng-bind="firstName"></span></p>
+    </div>
+
+
+    <!-- Expressions -->
+    <div ng-app="">
+        <p>New Expression: {{5 + 5}}</p>
+    </div>
+
+    <div ng-app="">
+        <p>Name: <input type="text" ng-model="name"></p>
+        <p>{{name}}</p>
+    </div>
+
+
+    <div ng-app="" ng-init="myCol='lightblue'">
         <input style="background-color:{{myCol}}" ng-model="myCol">
-        
-        </div>
-  </body>
+    </div>
+
+    <div ng-app="" ng-init="quantity=1;cost=5;">
+        <p>Total value is: {{ quantity * cost }}</p>
+    </div>
+
+    <div ng-app="" ng-init="points=[1,15,20,30]">
+        <p>The third point is : {{ points[2] }}</p>
+    </div>
+
+
+    <!-- AngularJS Applications -->
+    <div ng-app="myApp" ng-controller="myCtrl">
+        First Name: <input type="text" ng-model="firstName"><br>
+        Last Name: <input type="text" ng-model="lastName"><br>
+        Full Name: {{firstName + " " + lastName}}
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope){
+            $scope.firstName= "Fname";
+            $scope.lastName="Lname";
+        });
+    </script>
+
+
+    <!-- AngularJS Modules -->
+    <div ng-app="myApp" ng-controller="myCtrl">
+        {{firstName + " " + lastName}}
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope){
+            $scope.firstName = "User";
+            $scope.lastName = "No1";
+        });
+    </script>
+
+
+    <div ng-app="myApp" test-directive>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.directive("TestDirective", function(){
+            return {
+                template : "This is made with Directive Construstor!"
+            };
+        });
+    </script>
+</body>
 </html>
